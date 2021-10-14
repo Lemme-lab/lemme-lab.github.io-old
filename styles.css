@@ -593,9 +593,9 @@ top: 6px;
 
 .Box_Image{
   overflow-x: hidden;
-  top: 140px;
+  top: 340px;
   position: absolute;
-  right: calc( 50% - 160px);
+  right: calc( 50% - 260px);
 }
 
 .First_Box{
