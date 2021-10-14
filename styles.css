@@ -593,7 +593,7 @@ top: 6px;
 
 .Box_Image{
   overflow-x: hidden;
-  top: 70px;
+  top: 380px;
   position: absolute;
   right: calc( 50% - 180px);
 }
