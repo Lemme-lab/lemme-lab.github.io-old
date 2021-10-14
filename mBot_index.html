@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LemmE</title>
+    <link rel="stylesheet" href="mBot_style.css" />
+
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="navbar__container">
+
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html#header" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="index.html#header" class="navbar__links" id="Abilities">Abilities</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="index.html#header" class="navbar__links" id="About">About</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="index.html#header" class="navbar__links" id="services-page">My Work</a>
+                </li>
+            </ul>
+        </div>
+
+    
+        <div class="button-link" id="log_button">
+            <a href="Login.html#work" id="button-text">&nbsp;&nbsp;&nbsp;&nbsp;Sign-In/Up</a>
+        </div>
+
+
+        <div class="stack_overflow" id="stack">
+            <a href="https://stackoverflow.com/users/14211553/schleichdie">
+                <img alt="" src="data/kisspng-stackoverflow-icon-5d3ff473d685e2.1313915615644724358787.png" width="50" height="50">
+            </a>
+        </div>
+
+        <div class="Electrical_engineer" id="engineer">
+            <a href="https://electronics.stackexchange.com/users/276102/schleichdie">
+                <img alt="" src="data/apple-touch-icon@2.png" width="70" height="70">
+            </a>
+        </div>
+
+        <div class="twitter" id="twitter">
+            <a href="https://twitter.com/NopeLemme">
+                <img alt="" src="data/Twitter_bird_logo_2012.svg.png" width="40" height="40">
+            </a>
+        </div>
+
+    </nav>
+
+    <nav class = "Main">
+
+        <div class = Picture>
+            
+            <div class = Picture_Frame>
+
+            </div>
+
+            <div class="container">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <video class="myvideos"  loop="" src="data/ezgif.com-gif-maker (8).mp4" width = 1040px height = auto alt=""></video>
+              </div>
+
+            <div class = Picture_Headline>
+                 <h2 style="color: rgb(0, 0, 0); font-size: 4.2rem;">Self Driving mBot</h2>
+                 <p style="color: rgb(0, 0, 0); font-size: 2rem;">&nbsp;&nbsp;&nbsp;Collision-Avoiding Neural Network</p>
+            </div>  
+
+        </div>
+
+        <div class = linie_0></div>
+        <div class = linie_1></div>
+        <div class = linie_2></div>
+
+        <div class = Project>
+            <div class = Project_Head_1>
+                <h1>Collision-Avoiding mBot</h1>
+                <a id="Project_Head_1"></a>
+            </div>
+
+            <div class = Project_box>
+                    <img src="data/b67579f2-5860-42c2-99bc-4adb46e76acc.png" height="340px" class="mbot_img">           
+                
+            </div>
+
+            <div class = Project_Text>
+             <p style=" font-family: Tahoma, sans-serif">
+                Collision Avoiding Neural Network on a redesigned and digitalist mBot-Design from htl-klu. 
+                The neural network was designed in Python with Keras-Tensorflow, combined with Rasperry 
+                PI with PI-Cam to power it</p>
+                <a id="pcb"></a>
+            </div>
+     
+
+
+            <div class = Project_box_pcb>
+
+                <div class="slider">
+                    <div class="img-box">
+                        <img src="data/images/b.png" class="slider-img">
+                    </div>
+                </div>   
+
+                    <button class="btn" onclick="prev()"><</button>
+                    <button class="btn_1" onclick="next()">></button>
+                    
+            </div>
+               
+            <div class = Project_box_AI_Code>
+<pre>
+    import pandas as pd
+import numpy as np
+import os, sys
+from IPython.display import display
+from IPython.display import Image as _Imgdis
+from PIL import Image
+from numpy import asarray
+from matplotlib import image
+from matplotlib import pyplot
+
+
+blocked_X = [f for f in os.listdir("DataSet/Blocked") if os.path.isfile(os.path.join("DataSet/Blocked", f))]
+print("Working with {0} images".format(len(blocked_X)))
+blocked_Y = len(blocked_X)
+
+free_X = [f for f in os.listdir("DataSet/Free") if os.path.isfile(os.path.join("DataSet/Free", f))]
+print("Working with {0} images".format(len(free_X)))
+free_Y = len(free_X)
+
+
+
+for x in range (0,(len(blocked_X))):
+    blocked_Y = [0] * len(blocked_X)
+    name = blocked_X[x]
+    image = Image.open("DataSet/Blocked" + "/" + name)
+    #display(_Imgdis(filename= "DataSet/Blocked" + "/" + blocked_X[x], width=240, height=320))
+    blocked_X[x] = asarray(image)
+    #print(blocked_X[x].shape)
+    #print(blocked_Y[x])
+    
+    
+for x in range (0,(len(free_X))):
+    free_Y = [1] * len(free_X)
+    name = free_X[x]
+    image = Image.open("DataSet/free" + "/" + name)
+    #display(_Imgdis(filename= "DataSet/free" + "/" + free_X[x], width=240, height=320))
+    free_X[x] = asarray(image)
+    #print(blocked_X[x].shape)
+    #print(free_Y[x])
+    
+    
+dataset_X = np.concatenate([blocked_X, free_X])
+dataset_Y = np.concatenate([blocked_Y, free_Y])
+
+from keras.models import Sequential
+from keras.layers import Dense, Flatten,Conv2D , MaxPooling2D, Dropout
+import tensorflow as tf
+
+model = Sequential()
+
+model.add(Conv2D(32, kernel_size=(3, 3), input_shape=(224, 224, 3), activation="relu", padding="same"))
+model.add(Conv2D(32, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(128, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(Conv2D(128, kernel_size=(3, 3), activation="relu", padding="same"))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(256, activation="relu"))
+model.add(Dense(128, activation="relu"))
+model.add(Dense(64, activation="relu"))
+model.add(Dense(32, activation="relu"))
+model.add(Dense(16, activation="relu"))
+model.add(Dense( 2, activation="softmax"))
+
+model.compile(optimizer='RMSProp', loss="sparse_categorical_crossentropy", metrics=['accuracy'])
+model.summary() 
+
+checkpoint_path = "cp.ckpt"
+checkpoint_dir = os.path.dirname(checkpoint_path)
+cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,
+                                                 save_weights_only=True,
+                                                 verbose=1)
+
+model.fit(dataset_X, dataset_Y,batch_size=32, epochs=43, shuffle = True, callbacks=[cp_callback])
+
+model.evaluate(dataset_X, dataset_Y)
+results = model.predict(dataset_X[40].reshape(-1, 224, 224, 3))
+model.save("mBot_KI.hdf5")
+print(results)
+
+
+dataset_Y
+dataset_X
+</pre>
+            </div>
+    
+            <div class = Project_box_code>
+                <pre>
+                    from picamera import PiCamera
+                    from keras.models import load_model
+                    import numpy as np
+                    import random
+                    import numpy as np
+                    import os, sys
+                    from IPython.display import display
+                    from IPython.display import Image as _Imgdis
+                    from PIL import Image
+                    from numpy import asarray
+                    from matplotlib import image
+                    from matplotlib import pyplot
+                    
+                    #import RPi.GPIO as GPIO
+                    
+                    M1 = 23
+                    M2 = 19 
+                    #GPIO.setmode(GPIO.BOARD)
+                     
+                    GPIO.setup(M1, GPIO.OUT)
+                    GPIO.setup(M2, GPIO.OUT)
+                    
+                    model = load_model('mBot_KI.hdf5')
+                    
+                    i = 0
+                    
+                    
+                    while i != 1:
+                        
+                     
+                        camera.start_preview()
+                        camera.capture('/home/pi/Desktop/image%s.jpg')
+                        camera.stop_preview()
+                        
+                        image = Image.open('/home/pi/Desktop/image%s.jpg')
+                        #image = Image.open("DataSet/Blocked/05199562-694f-11e9-86df-72b5f773b75d.jpg")
+                        image_data = asarray(image)
+                        results = model.predict(image_data.reshape(-1, 224, 224, 3))
+                        index_max = np.argmax(results)
+                        print(index_max)
+                        
+                        n = random.randint(1,2)
+                    
+                        
+                        if((index_max == 0) and (n == 1)):
+                            Drive Left
+                            GPIO.output(M1, False)
+                            GPIO.output(M2, True)
+                            print("left")
+                           
+                        
+                        if((index_max == 0) and (n == 2)):
+                            Drive Left
+                            GPIO.output(M1, True)
+                            GPIO.output(M2, False)
+                            print("right")
+                                
+                        if(index_max == 1):
+                            Drive Straight
+                            GPIO.output(M1, True)
+                            GPIO.output(M2, True)
+                            print("straight")
+                            
+
+                </pre>
+            </div>
+
+
+
+            <div class = mBot_PCB_Header>mBot-PCB</div>
+            <div class = mBot_PCB_Text> The PCB and Schematic have been modified to fit a Rasperry PI. 
+                The electronics on the board have been modified and newly designed from the ground up.</div>
+
+
+            <div class = mBot_AI_Header>mBot-AI</div>
+            <div class = mBot_AI_Text>The neural network takes a public dataset processes it 
+                                      and trains itself to detect objects in front of him. 
+                                      The model is then saved in an .hdf5 file </div>
+
+                        
+            <div class = mBot_Code_Header>mBot-Code</div>
+            <div class = mBot_Code_Text>The model predicts the image that is loaded in via. the PI-Cam. 
+                Then it decides where to drive.</div>
+
+
+            <div class = mBot_toDO_Box>
+                <p class = toDo_text>*Stay in lines</p>
+                <p class = toDo_text>*Detect if Left or Right</p>
+                <p class = toDo_text>*Speed-Sensor</p>
+                <p class = toDo_text>*App</p>
+            </div>
+      
+           
+
+            <div class=Work__Button>
+           
+                <a href="https://github.com/Lemme-lab/mBot_KI">
+                    <button class="main__btn">&nbsp&nbsp&nbspRepository &nbsp&nbsp&nbsp</a></button>  
+                </a>
+              
+                <a href="mBot_Doc-konvertiert.pdf">
+                    <button class="resume__btn">Documentation</a></button> 
+                </a>
+                
+    
+    
+            </div>
+
+
+        </div>
+    
+
+        
+
+    </nav>
+    
+    
+
+</body>
+
+<footer>
+    <div class="footer__container">
+          <div class="footer__links">
+            <div class="footer__link--wrapper">
+              <div class="footer__link--items">
+                <a href="https://github.com/Lemme-lab">
+                <h2>GIT-Hub</h2>
+                </a>
+              </div>
+              <div class="footer__link--items">
+                <a href="https://stackoverflow.com/users/14211553/schleichdie">
+                <h2>Stack Overflow</h2>
+              </div>
+            </div>
+            <div class="footer__link--wrapper">
+              <div class="footer__link--items">
+                <a href="http://127.0.0.1:5500/Still%20in%20work/index.html#">
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Repository</h2>
+            </a>
+              </div>
+              <div class="footer__link--items">
+                <a href="https://twitter.com/NopeLemme">
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Twitter</h2>
+            </a>
+              </div>
+            </div>
+          </div>
+          <section class="social__media">
+            <div class="social__media--wrap">
+              <div class="footer__logo">
+                <a href="" id="footer__logo">lemmE</a>
+              </div>
+              <p class="website__rights">© lemmE 2021. All rights reserved</p>
+              </div>
+            </div>
+          </section>
+        </div>
+    </footer>
+<script src="data/app.js"></script>
+</html>
