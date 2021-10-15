@@ -25,6 +25,6 @@ $(document).ready(function() {
   }
   
   function setImg(){
-      return slider_img.setAttribute('src', "images/"+images[i]);
+      return slider_img.setAttribute('src', "data/images/"+images[i]);
       
   }
