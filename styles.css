@@ -363,7 +363,7 @@ top: 6px;
 .services_backround{
   overflow-x: hidden;
   position: absolute;
-  top: 980px;
+  top: 1070px;
   right: 20px;
   height: 600px;
   width: calc(100% - 40px);
@@ -423,8 +423,8 @@ top: 6px;
   top: 1850px;
   right: calc(50% - 200px);
   font-size: 4rem;
-  color: #686767;
-  text-shadow: 2px 2px 0px #1199c2, -2px -2px 0px #09e3eb, 0px 0px 8px #1c9ce6;
+  color: #ffffff;
+ 
 }
 
 .Who_am_I {
@@ -433,11 +433,11 @@ top: 6px;
   position: absolute;
   top: 2125px;
   right: calc(50% - 375px);
-  font-size: 2rem;
+  font-size: 3rem;
 
   color: white;
 
-  background-image: linear-gradient(45deg, #fc00ff, #297AA6, #0F345C);
+  background-image: linear-gradient(45deg, #ffffff, #ffffff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -504,12 +504,12 @@ top: 6px;
   position: absolute;
   padding-left: 40px;
   top: 2950px;
-  right: calc(50% + 200px);
-  font-size: 2.0rem;
+  right: calc(50% + 100px);
+  font-size: 3rem;
 
   color: white;
 
-  background-image: linear-gradient(45deg, #fc00ff, #297AA6, #0F345C);
+  background-image: linear-gradient(45deg, #ffffff, #ffffff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -593,9 +593,9 @@ top: 6px;
 
 .Box_Image{
   overflow-x: hidden;
-  top: 120px;
+  top: 160px;
   position: absolute;
-  right: calc( 50% - 200px);
+  right: calc( 50% - 180px);
 }
 
 .First_Box{
