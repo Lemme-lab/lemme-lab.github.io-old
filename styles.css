@@ -298,45 +298,14 @@ top: 6px;
   cursor: pointer;
 }
 
-.picture_1:hover {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transform: scale(1.02);
-  transition: 0.3s ease-in;
-  cursor: pointer;
-}
-
-.picture_2:hover {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transform: scale(1.02);
-  transition: 0.3s ease-in;
-  cursor: pointer;
-}
-
-.picture_3:hover {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transform: scale(1.02);
-  transition: 0.3s ease-in;
-  cursor: pointer;
-}
-
-.picture_4:hover {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transform: scale(1.02);
-  transition: 0.3s ease-in;
-  cursor: pointer;
-}
 
 
 
-.picture_1{
-  overflow-x: hidden;
-  position: absolute;
-  top: 250px;
-  right: calc(50% + 430px);
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .picture_2{
@@ -434,6 +403,7 @@ top: 6px;
   top: 2125px;
   right: calc(50% - 375px);
   font-size: 3rem;
+  text-decoration: underline;
 
   color: white;
 
@@ -506,6 +476,8 @@ top: 6px;
   top: 2950px;
   right: calc(50% + 30px);
   font-size: 3rem;
+  text-decoration: underline;
+  text-decoration: #fff;
 
   color: white;
 

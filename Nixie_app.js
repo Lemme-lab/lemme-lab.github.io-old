@@ -17,6 +17,6 @@
   }
   
   function setImg(){
-      return slider_img.setAttribute('src', "data/image"+image[i]);
+      return slider_img.setAttribute('src', "data/image/"+image[i]);
       
   }
